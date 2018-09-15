@@ -1,0 +1,91 @@
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+        
+        /*
+        .sidebar {
+            position: fixed;
+            width: 25%;
+            height: 100vh;
+            background: #312450;
+            font-size: 0.65em;
+        }
+        
+        .nav {
+            position: relative;
+            margin: 0 15%;
+            text-align: right;
+            top: 30%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            font-weight: bold;
+        }
+        */
+        
+        ul {
+            list-style: none;
+        }
+        
+        ul li {
+            /*position: relative; */
+            margin-top: 10px;
+        }
+        
+        ul li.question:hover {
+            background-color: gray;
+        }
+
+        .center {
+    background-color: lightyellow;
+    margin: auto;
+    margin-top: 10%;
+    width: 40%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hideform {
+    display: none;
+}
+
+       /*
+        
+        .nav ul li a {
+            line-height: 5em;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.4em;
+            color: rgba(255, 255, 255, 0.35);
+            display: block;
+            transition: all ease-out 300ms;
+        }
+        
+        .nav ul li.active a {
+            color: white;
+        }
+        
+        
+        .nav ul li:not(.active)::after {
+            opacity: 0.2;
+        }
+        
+        .nav ul li:not(.active):hover a {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        
+        .nav ul li::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 0.2em;
+            background: black;
+            left: 0;
+            bottom: 0;
+            background-image: linear-gradient(to right, #5e42a6, #b74e91);
+        }
+        */
+
+       .question 
+        {
+            font-size: 15px;
+            color: black;
+            font-family: monospace;
+        }
