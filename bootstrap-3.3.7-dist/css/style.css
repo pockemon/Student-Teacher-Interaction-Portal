@@ -1,34 +1,35 @@
-        @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-        ul {
-            list-style: none;
-        }
+@import "bourbon";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+ul {
+  list-style: none;
+}
 
-        ul li {
-            /*position: relative; */
-            margin-top: 10px;
-        }
+ul li {
+  /*position: relative; */
+  margin-top: 10px;
+}
 
-        ul li.question:hover {
-            background-color: gray;
-        }
+ul li.question:hover {
+  background-color: gray;
+}
 
 
-        .question {
-            font-size: 15px;
-            color: black;
-            font-family: monospace;
-        }
-        /* Full-width input fields */
+.question {
+  font-size: 15px;
+  color: black;
+  font-family: monospace;
+}
+/* Full-width input fields */
+/*
+.center
+  {
+      margin: auto;
+      width: 30%;
+      padding: 20px;
+  }
 
-          .center
-            {
-                background-color: lightgreen;
-                margin: auto;
-                width: 30%;
-                padding: 20px;
-            }
-
-            .hideform
-            {
-                display: none;
-            }
+  .hideform
+  {
+      display: none;
+  }
+  */

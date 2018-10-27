@@ -1,0 +1,51 @@
+
+  body
+  {
+
+     background-image: url("https://cdn.pixabay.com/photo/2016/12/28/11/36/book-1935944__340.jpg");
+     background-position: center; /* Center the image */
+     background-repeat: no-repeat; /* Do not repeat the image */
+     background-size: cover; /* Resize the background image to cover the entire container */
+  }
+
+  .login-form .panel default
+  {
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  .login-form .form-control {
+    background: none repeat scroll 0 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .main-div {
+    background: #ffffff none repeat scroll 0 0;
+    border-radius: 2px;
+    margin: 30px auto 45px;
+    max-width: 30%;
+    padding: 50px 70px 70px 71px;
+  }
+
+  .login-form .form-group {
+    margin-bottom:30px;
+  }
+
+  .login-form{ text-align:center;}
+
+  .login-form  .btn.btn-primary {
+    background: #f0ad4e none repeat scroll 0 0;
+    border-color: #f0ad4e;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    width: 70%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+  }
