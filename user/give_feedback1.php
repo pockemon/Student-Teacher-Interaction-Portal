@@ -102,7 +102,7 @@ echo "<font color='blue' size='5px'><center>Thank you for your feedback</center>
                     <a href="#" class="simple-text">
                         Hello <?php echo $users['name'];?>
                 </a>
-                <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $users['image'] ).'" style="width:200px;height:180px;border-radius:50%"/>'; ?>
+                <img src = "../images/<?php echo $users['email']; ?>/<?php echo $users['image']; ?>" style="width:200px;height:180px;border-radius:50%">
 
                 </div>
 

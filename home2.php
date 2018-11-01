@@ -55,33 +55,36 @@ session_start();
 
 		<!-- Banner -->
     <section class="banner full">
-      <article>
-        <img src="images/image2.jpg" alt="" / style="height:500px">
-        <div class="inner">
-          <header>
+				<article>
+					<img src="images/image2.jpg" alt="" />
+					<div class="inner">
+						<header>
+							<p>Welcome To</p>
+							<h2 style="font-size: 90px">Student Teacher Interaction Portal</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/bg1.jpeg" alt="" />
+					<div class="inner">
+            <header>
+              <p>Creating</p>
+              <h2 style="font-size: 90px">An online way for interaction</h2>
+            </header>
 
-          </header>
-        </div>
-      </article>
-      <article>
-        <img src="images/bg1.jpeg" alt="" />
-        <div class="inner">
-          <header>
+					</div>
+				</article>
+				<article>
+					<img src="images/image4.jpg"  alt="" />
+					<div class="inner">
+            <header>
+              <p>Our moto</p>
+              <h2 style="font-size: 90px">We bring changes</h2>
+            </header>
+					</div>
+				</article>
 
-          </header>
-        </div>
-      </article>
-      <article>
-        <img src="images/image4.jpg"  alt="" />
-        <div class="inner">
-          <header>
-
-          </header>
-        </div>
-      </article>
-
-    </section>
-
+			</section>
 
 
 		<!-- Footer -->

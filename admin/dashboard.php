@@ -1,9 +1,11 @@
 <?php
 session_start();
-if(!isset($_SESSION['user']))
-{
-header('location:index.php');
-}
+include('../dbconfig.php');
+error_reporting(0);
+
+if(!isset($_SESSION['admin']))
+{header('location:../home2.php');}
+
 include('../dbconfig.php');
 
 ?>

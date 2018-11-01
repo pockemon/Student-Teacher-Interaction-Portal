@@ -1,6 +1,10 @@
 <?php
-extract($_POST);
+session_start();
 include('../dbconfig.php');
+error_reporting(0);
+
+if(!isset($_SESSION['admin']))
+{header('location:../home2.php');}
 if(isset($update_password))
 {
 

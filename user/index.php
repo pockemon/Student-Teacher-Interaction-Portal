@@ -68,7 +68,7 @@ $users=mysqli_fetch_assoc($sql);
                     <a href="#" class="simple-text">
                         Hello <?php echo $users['name'];?>
                      </a>
-                     <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $users['image'] ).'" style="width:190px;height:170px;border-radius:50%"/>'; ?>
+                     <img src = "../images/<?php echo $users['email']; ?>/<?php echo $users['image']; ?>" style="width:200px;height:180px;border-radius:50%">
 
                 </div>
 
@@ -168,7 +168,7 @@ $users=mysqli_fetch_assoc($sql);
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            
+
                             <li>
                                 <a href="logout.php">
                                     <p>Log out</p>

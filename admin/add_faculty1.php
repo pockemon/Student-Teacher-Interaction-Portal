@@ -1,6 +1,10 @@
 <?php
-error_reporting(1);
-	include('../dbconfig.php');
+session_start();
+include('../dbconfig.php');
+error_reporting(0);
+
+if(!isset($_SESSION['admin']))
+{header('location:../home2.php');}
 
 	extract($_POST);
 	if(isset($save))
