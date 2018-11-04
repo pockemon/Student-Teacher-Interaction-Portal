@@ -111,6 +111,14 @@ echo "<font color='blue' size='5px'><center>No any records found ! </center></fo
                     </li>
 
                     <li>
+                          <a href="../tea_co_reg.php">
+                             <i class="pe-7s-news-paper"></i>
+                             <p> Approve Courses </p>
+                          </a>
+
+                    </li>
+
+                    <li>
                           <a href="Forum1.php">
                               <i class="pe-7s-notebook"></i>
                               <p>Q-A forum </p>
@@ -123,6 +131,15 @@ echo "<font color='blue' size='5px'><center>No any records found ! </center></fo
                               <i class="pe-7s-upload"></i>
                               <p>Upload Study Material/Assignment </p>
                           </a>
+
+                    </li>
+
+                    <li>
+
+                      <a href="view1.php">
+                          <i class="pe-7s-look"></i>
+                          <p> View Assignment submissions</p>
+                      </a>
 
                     </li>
 
@@ -217,7 +234,7 @@ echo "<font color='blue' size='5px'><center>No any records found ! </center></fo
                                           		<th>Quest10</th>
                                           		<th>Quest11</th>
                                           		<th>Quest12</th>
-                                          		
+
                                           		</tr>
                                           		</thead>
 

@@ -1,7 +1,10 @@
 <?php
 session_start();
  require('dbconfig.php');
-
+if(isset($_SESSION['user']))
+{
+    header('location: user/index.php');
+}
  extract($_POST);
  if(isset($save))
  {
@@ -14,14 +17,17 @@ session_start();
  	{
  $pass=md5($p);
 
- $sql=mysqli_query($conn,"select * from user where email='$e' and pass='$pass'");
+ $sql=mysqli_query($conn,"select * from user where email='$e' and pass='$pass'") or die(mysqli_error($conn));
 
  $r=mysqli_num_rows($sql);
 
+ $row = mysqli_fetch_array($sql);
  if($r==true)
  {
  $_SESSION['user'] = $e;
- header('location:user');
+ $_SESSION['id'] = $row['id'];
+ $_SESSION['semester'] = $row['semester'];
+ header('location:user/index.php');
  }
 
  else

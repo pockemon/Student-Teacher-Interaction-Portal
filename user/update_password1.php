@@ -151,6 +151,14 @@ $err="<font color='blue' size='5px'><center>Wrong Old Password </center></font>"
 											</li>
 
 											<li>
+														<a href="../stu_co_reg.php">
+															 <i class="pe-7s-news-paper"></i>
+															 <p> Course Registration </p>
+														</a>
+
+											</li>
+
+											<li>
 														<a href="Forum1.php">
 																<i class="pe-7s-notebook"></i>
 																<p>Q-A forum </p>
@@ -178,12 +186,21 @@ $err="<font color='blue' size='5px'><center>Wrong Old Password </center></font>"
 
 											<li>
 
-												<a href="upload_ass.php">
-														<i class="pe-7s-upload"></i>
-														<p> Upload Assignment Submission </p>
-												</a>
+	                      <a href="upload_ass_form.php">
+	                          <i class="pe-7s-upload"></i>
+	                          <p> Upload Assignment Submission </p>
+	                      </a>
 
-											</li>
+	                    </li>
+
+	                    <li>
+
+	                      <a href="upload_ass.php">
+	                          <i class="pe-7s-look"></i>
+	                          <p> View Uploaded Ass submission</p>
+	                      </a>
+
+	                    </li>
 
 											<li>
 																<a href="give_feedback1.php">

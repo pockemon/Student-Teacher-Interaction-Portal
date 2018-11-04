@@ -9,6 +9,77 @@ $users=mysqli_fetch_assoc($sql);
 //print_r($users);
 ?>
 
+<?php
+
+
+
+
+if(isset($_POST["submit"]))
+{
+
+  $error_types = array(
+      1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini.',
+      'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.',
+      'The uploaded file was only partially uploaded.',
+      'No file was uploaded.',
+      6 => 'Missing a temporary folder.',
+      'Failed to write file to disk.',
+      'A PHP extension stopped the file upload.'
+  );
+
+  // Outside a loop...
+  if ($_FILES['file']['error'] == 0) {
+      // here userfile is the name
+      // i.e(<input type="file" name="*userfile*" size="30" id="userfile">
+      echo "no error ";
+  } else {
+      $error_message = $error_types[$_FILES['file']['error']];
+      echo $error_message;
+  }
+
+    $target_dir = "../upload_stu/";
+    $file = $_FILES['file']['name'];
+    //echo $_FILES['fileToUpload']['name'];
+    $file1 = $_FILES['file'];
+    print_r($file1);
+
+
+    $target_file = $target_dir . basename($_FILES['file']['name']);
+    $uploadOk = 1;
+
+
+  //  echo $target_file;
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "<font color='blue' size='3px'><center>" ."Sorry, file already exists. Rename and try uploading."."</center></font>";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+      //  echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else
+        {
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file))
+            {
+                echo "<font color='blue' size='4px'><center>" ."The file has been uploaded."."</center></font>";
+
+                //$insert_query = "insert into student_teacher_portal.uploads (file_address, stud_roll) values ('$target_file','$_SESSION[id]')";
+                //You will first have to create a column for stud_roll in the databas, ensure that you dont create it as unique
+                //You will have to update the following query with the previous one when thhe login part is done
+                 $insert_query = "insert into uploads (file_address, user_id) values ('$target_file', '$user')";
+                 $insert_query_result = mysqli_query($conn, $insert_query) or die(mysqli_error($conn));
+                 header('location: Upload.php');
+            } else
+                {
+                //    echo "<font color='blue' size='2px'><center>" ."Sorry, there was an error uploading your file."."</center></font>";
+                }
+        }
+}
+?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -103,6 +174,14 @@ $users=mysqli_fetch_assoc($sql);
 
                     </li>
 
+                    <li>
+                          <a href="../stu_co_reg.php">
+                             <i class="pe-7s-news-paper"></i>
+                             <p> Course Registration </p>
+                          </a>
+
+                    </li>
+
                       <li>
                               <a href="Forum1.php">
                                   <i class="pe-7s-notebook"></i>
@@ -128,9 +207,18 @@ $users=mysqli_fetch_assoc($sql);
 
                         <li>
 
-                          <a href="upload_ass.php">
+                          <a href="upload_ass_form.php">
                               <i class="pe-7s-upload"></i>
                               <p> Upload Assignment Submission </p>
+                          </a>
+
+                        </li>
+
+                        <li>
+
+                          <a href="upload_ass.php">
+                              <i class="pe-7s-look"></i>
+                              <p> View Uploaded Ass submission</p>
                           </a>
 
                         </li>
@@ -186,12 +274,7 @@ $users=mysqli_fetch_assoc($sql);
               </div>
           </nav>
 
-          <form method="post" style="margin-top: 80px">
-            <div style="color: red "><?php
 
-              echo @$err;
-
-                ?>
             <div class="content" >
                 <div class="container-fluid">
                     <div class="row panel panel-default" style="padding:10px">
@@ -204,55 +287,36 @@ $users=mysqli_fetch_assoc($sql);
 
                                         <div class="row">
 
-                                           <?php echo "<p style='color:black'>".$_SESSION['user']."</p>"; ?>
 
 
-                                              <form action="upload_proper_script.php" method="post" enctype="multipart/form-data">
-                                                  <div style="background-color: forestgreen; color: #000; text-align: center">
-                                                    <?php
-                                                    if(isset($_GET['confirm']))
-                                                    {
-                                                      echo $_GET['confirm'];
-                                                    }
-                                                    ?>
-                                                  </div>
-                                                  <input type="file" name="fileToUpload" id="fileToUpload" class="form-control">
-                                                  <br>
-                                                  <input type="submit" value="Upload" name="submit" class="btn btn-primary"
-                                                         style="margin-left: 150px">
-                                              </form>
+                                      <p style="font-size: 20px; font-weight: bolder; margin-top: 30px; color:black"> Uploaded assignments: </p><br>
+                                      <p style="font-size: 18px; font-weight: bold; color:black">Assignment name </p><br>
 
 
-                                              <p style="font-size: 20px; font-weight: bolder; margin-top: 30px; color:black"> Uploaded assignments: </p><br>
-                                              <p style="font-size: 18px; font-weight: bold; color:black">Assignment name </p><br>
-
-
-                                              <?php
-
-                                              $dir = "uploads";
-                                                      if (is_dir($dir)){
-                                                          if($dh = opendir($dir)){
-                                                              $count = 1;
-                                                              //$id = $users['id'];
-
-                                                              $select_query = "select file_address from uploads where user_id = '$_SESSION[user]' ";
-                                                              $select_query_result = mysqli_query($conn, $select_query) or die(mysqli_error($conn));
-                                                              while ($row = mysqli_fetch_array($select_query_result)){
-                                                                  $basename = basename($row['file_address']);
-                                                                  if($basename!='.' && $basename!='..'){
-                                                                      echo $count.'. ';
-                                                                      echo "<a href='$row[file_address]' download>$basename</a><br><br>";
-                                                                      $count = $count +1;
-                                                                   }
-                                                              }
-                                                              closedir($dh);
-                                                          }
-                                                      }
-                                              else {
-                                              echo "Not a directory";
-                                              }
-
-                                              ?>
+                                                <?php
+                                            $dir = "../upload_stu";
+                                                    if (is_dir($dir)){
+                                                            if($dh = opendir($dir)){
+                                                                $count = 1;
+                                                                //$db = "uploads";
+                                                                //echo $_SESSION[faculty_login];
+                                                                $select_query = "select file_address from uploads_stu where user_id = '$user' ";
+                                                                $select_query_result = mysqli_query($conn, $select_query) or die(mysqli_error($conn));
+                                                                while ($row = mysqli_fetch_array($select_query_result)){
+                                                                    $basename = basename($row['file_address']);
+                                                                    if($basename!='.' && $basename!='..'){
+                                                                        echo "<font color='black'>".$count." . "."</font>";
+                                                                        echo "<a style='color:blue' href='$row[file_address]' download>$basename</a><br><br>";
+                                                                        $count = $count +1;
+                                                                     }
+                                                                }
+                                                                closedir($dh);
+                                                            }
+                                                        }
+                                         else {
+                                             echo "Not a directory";
+                                         }
+                                                ?>
 
                                       </div>
                                </div>
@@ -261,11 +325,6 @@ $users=mysqli_fetch_assoc($sql);
                 </div>
             </div>
           </div>
-
-        </form>
-
-
-
         </div>
     </div>
 

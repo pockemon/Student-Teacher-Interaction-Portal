@@ -107,8 +107,16 @@ $users=mysqli_fetch_assoc($sql);
                     <li>
                         <a href="update_profile1.php">
                             <i class="pe-7s-user"></i>
-                            <p>User Profile</p>
+                            <p>View/Edit Profile</p>
                         </a>
+                    </li>
+
+                    <li>
+                          <a href="../tea_co_reg.php">
+                             <i class="pe-7s-news-paper"></i>
+                             <p> Approve Courses </p>
+                          </a>
+
                     </li>
 
 
@@ -136,6 +144,15 @@ $users=mysqli_fetch_assoc($sql);
                             <i class="pe-7s-upload"></i>
                             <p>Upload Study Material/Assignment </p>
                         </a>
+
+                  </li>
+
+                  <li>
+
+                    <a href="view1.php">
+                        <i class="pe-7s-look"></i>
+                        <p> View Assignment submissions</p>
+                    </a>
 
                   </li>
 

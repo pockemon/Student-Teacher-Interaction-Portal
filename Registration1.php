@@ -31,8 +31,8 @@ $imageName=$_FILES['img']['name'];
 $pass=md5($p);
 
 
-$query="insert into user values('','$n','$e','$pass','$mob','$pro','$sem','$gen','$imageName','$yy',now())";
-mysqli_query($conn,$query);
+$query="insert into user(name, email, pass, mobile, programme, semester, gender, image, dob) values('$n','$e','$pass','$mob','$pro','$sem','$gen','$imageName','$yy')";
+mysqli_query($conn,$query) or die(mysqli_error($conn));
 
 //upload image
 

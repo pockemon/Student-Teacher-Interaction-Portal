@@ -219,7 +219,7 @@ if(!isset($_SESSION['admin']))
                                           	echo "<th>Designation</th>";
                                           	echo "<th>Programme</th>";
                                           	echo "<th>Semester</th>";
-                                          	echo "<th>User Name</th>";
+                                          	echo "<th>Course</th>";
                                           	echo "<th>Email</th>";
                                           	echo "<th>Mobile</th>";
                                           	echo "<th>Password</th>";
@@ -238,7 +238,7 @@ if(!isset($_SESSION['admin']))
                                           		echo "<td>".$row['designation']."</td>";
                                           		echo "<td>".$row['programme']."</td>";
                                           		echo "<td>".$row['semester']."</td>";
-                                          		echo "<td>".$row['user_alias']."</td>";
+                                          		echo "<td>".$row['course_code']."</td>";
                                           		echo "<td>".$row['email']."</td>";
                                           		echo "<td>".$row['mobile']."</td>";
                                           		echo "<td>".$row['password']."</td>";

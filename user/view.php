@@ -7,6 +7,8 @@ if($user=="")
 $sql=mysqli_query($conn,"select * from user where email='$user' ");
 $users=mysqli_fetch_assoc($sql);
 //print_r($users);
+
+
 ?>
 
 
@@ -105,6 +107,14 @@ $users=mysqli_fetch_assoc($sql);
 
                     </li>
 
+                    <li>
+                          <a href="../stu_co_reg.php">
+                             <i class="pe-7s-news-paper"></i>
+                             <p> Course Registration </p>
+                          </a>
+
+                    </li>
+
                       <li>
                               <a href="Forum1.php">
                                   <i class="pe-7s-notebook"></i>
@@ -130,9 +140,18 @@ $users=mysqli_fetch_assoc($sql);
 
                         <li>
 
-                          <a href="upload_ass.php">
+                          <a href="upload_ass_form.php">
                               <i class="pe-7s-upload"></i>
                               <p> Upload Assignment Submission </p>
+                          </a>
+
+                        </li>
+
+                        <li>
+
+                          <a href="upload_ass.php">
+                              <i class="pe-7s-look"></i>
+                              <p> View Uploaded Ass submission</p>
                           </a>
 
                         </li>
@@ -213,16 +232,21 @@ $users=mysqli_fetch_assoc($sql);
 
                                           <?php
 
-                                          $dir = "uploads";
+                                          $dir = "../upload_fac";
                                                   if (is_dir($dir)){
                                                       if($dh = opendir($dir)){
                                                           $count = 1;
-                                                          $select_query = "select file_address from uploads";
+                                                          //echo $users['semester'];
+
+                                                          $select_query = "select file_address from uploads,faculty,user where uploads.user_id = faculty.email
+                                                                                            and faculty.semester = '$users[semester]' and user.email = '$user' ";
+
                                                           $select_query_result = mysqli_query($conn, $select_query) or die(mysqli_error($conn));
                                                           while ($row = mysqli_fetch_array($select_query_result)){
                                                               $basename = basename($row['file_address']);
                                                               if($basename!='.' && $basename!='..'){
-                                                                  echo $count.'. ';
+                                                                  echo "<font color='black'>".$count." . "."</font>";
+                                                                  //echo $row["user_id"].".";
                                                                   echo "<a href='$row[file_address]' download>$basename</a><br><br>";
                                                                   $count = $count +1;
                                                                }
