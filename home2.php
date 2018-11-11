@@ -1,6 +1,19 @@
 <?php
 session_start();
- require('dbconfig.php'); ?>
+ require('dbconfig.php'); 
+if(isset($_SESSION['user']){
+header('location: user/index.php');
+}
+else if(isset($_SESSION['faculty_login']))
+   {
+	   header('location: faculty/index.php');
+   }
+   
+else if(isset($_SESSION['admin']))
+   {
+	   header('location: admin');
+   }
+?>
 
 <!DOCTYPE HTML>
 
