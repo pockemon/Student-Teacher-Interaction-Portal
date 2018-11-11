@@ -4,6 +4,22 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
+<?php
+if(isset($_SESSION['user'])
+   {
+	   header('location: user/index.php');
+   }
+else if(isset($_SESSION['faculty_login']))
+   {
+	   header('location: faculty/index.php');
+   }
+   
+else if(isset($_SESSION['admin']))
+   {
+	   header('location: admin');
+   }
+
+?>
 <html>
 	<head>
 		<link rel="icon" type="image/png" href="images/favicon.ico">
