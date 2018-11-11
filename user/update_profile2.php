@@ -1,22 +1,49 @@
 <?php
 session_start();
 include('../dbconfig.php');
+$user= $_SESSION['user'];
+if($user=="")
+{header('location:../home2.php');}
+$sql=mysqli_query($conn,"select * from user where email='$user' ");
+$users=mysqli_fetch_assoc($sql);
+//print_r($users);
+?>
 
-	extract($_POST);
-	if(isset($save))
-	{
+<?php
 
-	mysqli_query($conn,"update faculty set Name='$n',designation	='$desg',programme='$prg',semester='$sem',mobile='$mob',	password='$pass' where email='".$_SESSION['faculty_login']."'");
+extract($_POST);
+if(isset($update))
+{
 
-$err="<font color='blue' size='5px'><center>Faculty Details updated</center></font>";
+$n = $_POST["n"];
+$e = $_POST["e"];
+$mob = $_POST["mob"];
+$pro = $_POST["pro"];
+$sem = $_POST["sem"];
+$gen = $_POST["gen"];
+$dob = $_POST["dob"];
+
+//$imageName = $_FILES['img']['name'];
+
+$query="update user set name='$n',email='$e',mobile='$mob',programme='$pro',semester='$sem',gender='$gen',dob='$dob' where email='".$_SESSION['user']."'";
+
+//$query="insert into user values('','$n','$e','$pass','$mob','$gen','$hob','$imageName','$dob',now())";
+mysqli_query($conn,$query);
+
+
+
+$err="<font color='blue' size='5px'><center>Profie updated successfully !!</center></font>";
+
 
 }
 
-$con=mysqli_query($conn,"select * from faculty where email='".$_SESSION['faculty_login']."'");
 
-$users=mysqli_fetch_assoc($con);
-//print_r($res);
-?>
+//select old data
+//check user alereay exists or not
+$sql=mysqli_query($conn,"select * from user where email='".$_SESSION['user']."'");
+$res=mysqli_fetch_assoc($sql);
+
+ ?>
 
 <!doctype html>
 <html lang="en">
@@ -50,7 +77,7 @@ $users=mysqli_fetch_assoc($con);
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
+    <link href="table_style.css" rel="stylesheet">
     <style>
 
       .wrapper{
@@ -84,9 +111,9 @@ $users=mysqli_fetch_assoc($con);
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="#" class="simple-text">
-                        Hello <?php echo $users['Name'];?>
+                        Hello <?php echo $users['name'];?>
                 </a>
-                <img src="images_f/f1.jpeg" style="width:200px;height:180px;border-radius:50%">
+                <img src = "../images/<?php echo $users['email']; ?>/<?php echo $users['image']; ?>" style="width:200px;height:180px;border-radius:50%">
 
                 </div>
 
@@ -98,67 +125,59 @@ $users=mysqli_fetch_assoc($con);
                         </a>
                     </li>
                     <li>
-                        <a href="Update_profile1.php">
+                        <a href="update_profile2.php">
                             <i class="pe-7s-user"></i>
                             <p>View/Edit Profile</p>
                         </a>
                     </li>
 
-										<li>
-													<a href="../tea_co_reg.php">
-														 <i class="pe-7s-news-paper"></i>
-														 <p> Approve Courses </p>
-													</a>
-
-										</li>
-
-										<li>
-													<a href="../tea_atte.php">
-														 <i class="pe-7s-id"></i>
-														 <p> Give Attendance </p>
-													</a>
-
-										</li>
-
-										<li>
-													<a href="../tea_view_att.php">
-														 <i class="pe-7s-look"></i>
-														 <p> View Attendance </p>
-													</a>
-
-										</li>
-
-										<li>
-													<a href="Forum1.php">
-															<i class="pe-7s-notebook"></i>
-															<p>Q-A forum </p>
-													</a>
-
-										</li>
-
-										<li>
-                          <a href="Upload.php">
-                              <i class="pe-7s-upload"></i>
-                              <p>Upload Study Material/Assignment </p>
+                    <li>
+                          <a href="update_password1.php">
+                             <i class="pe-7s-lock"></i>
+                             <p>Update Password </p>
                           </a>
 
                     </li>
 
-										<li>
+                    <li>
+                          <a href="Forum1.php">
+                              <i class="pe-7s-notebook"></i>
+                              <p>Q-A forum </p>
+                          </a>
 
-											<a href="view1.php">
-													<i class="pe-7s-look"></i>
-													<p> View Assignment submissions</p>
-											</a>
-
-										</li>
-
-
+                    </li>
 
                     <li>
-                              <a href="Feedback1.php">
+
+                          <a href="Add_question1.php">
+                              <i class="pe-7s-help1"></i>
+                              <p> Ask a question  </p>
+                          </a>
+
+                    </li>
+
+                    <li>
+
+                      <a href="view.php">
+                          <i class="pe-7s-look"></i>
+                          <p> View Study Material/Assignments </p>
+                      </a>
+
+                    </li>
+
+                    <li>
+
+                      <a href="upload_ass.php">
+                          <i class="pe-7s-upload"></i>
+                          <p> Upload Assignment Submission </p>
+                      </a>
+
+                    </li>
+
+                    <li>
+                              <a href="give_feedback1.php">
                                  <i class="pe-7s-like2"></i>
-                                 <p>View Feedback</p>
+                                 <p>Feedback</p>
                                </a>
 
                     </li>
@@ -226,24 +245,17 @@ $users=mysqli_fetch_assoc($con);
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label><b> Name </b></label>
-                                                    <input type="text" class="form-control" placeholder="Username" value="<?php echo $users['Name'];?>" name="n">
+                                                    <input type="text" class="form-control" placeholder="Username" value="<?php echo $users['name'];?>" name="n">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label> Designation </label>
-                                                    <input type="text" class="form-control" placeholder="Designation" value="<?php echo $users['designation'];?>" name="desg">
+                                                    <label for="exampleInputEmail1">Email address</label>
+                                                    <input type="email" class="form-control" placeholder="email" value="<?php echo $users['email'];?>" name="e">
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
-                                          <div class="col-md-4">
-                                              <div class="form-group">
-                                                  <label>Email address</label>
-                                                  <input type="email" class="form-control" placeholder="email" readonly="true" value="<?php echo $users['email'];?>" name="e">
-                                              </div>
-                                          </div>
                                         </div>
 
                                         <div class="row">
@@ -256,10 +268,10 @@ $users=mysqli_fetch_assoc($con);
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                   <label>Program</label>
-                                                  <select class="form-control" id="inputProgram" style="font-size: 16px" placeholder="Program" name="prg">
+                                                  <select class="form-control" id="inputProgram" style="font-size: 16px" placeholder="Program" name="pro">
 
                                                     <option selected="selected"><?php echo $users['programme'];?></option>
                                                     <option style="color:black">MCA</option>
@@ -271,7 +283,7 @@ $users=mysqli_fetch_assoc($con);
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
 
                                                   <label>Semester</label>
@@ -291,15 +303,29 @@ $users=mysqli_fetch_assoc($con);
 
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
 
+                                                  <label>Gender</label>
+
+                                                  <select class="form-control" id="inputGender" style="font-size: 16px" placeholder="Gender" name="gen" value="<?php echo $users['gender'];?>">
+
+                                                    <option selected="selected"><?php echo $users['gender'];?></option>
+                                                    <option style="color:black">Male</option>
+                                                    <option style="color:black">Female</option>
+
+                                                  </select>
+
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
 
-                                                    <label>Password</label>
-                                                    <input type="text" class="form-control" id="inputDate" style="font-size: 16px" placeholder="password" value="<?php echo @$users['password'];?>"  name="pass"  required>
+                                                    <label>Date of birth</label>
+                                                    <input type="date" class="form-control" id="inputDate" style="font-size: 16px" placeholder="date" value="<?php echo $users['dob'];?>" name="dob">
 
                                                 </div>
                                             </div>
@@ -313,8 +339,7 @@ $users=mysqli_fetch_assoc($con);
 
                         <div class="col-md-4" style="margin-top: 20px">
 
-                          <img src="images_f/f1.jpeg" style="width:300px;height:300px"/>
-
+                          <img src = "../images/<?php echo $users['email']; ?>/<?php echo $users['image']; ?>" style="width:350px;height:400px">
                           <br>
                           <br>
 
@@ -327,16 +352,47 @@ $users=mysqli_fetch_assoc($con);
 
                         </div>
 
-                        <input type="submit" class="btn btn-success" name="save" value="Update  Profile">
+                        <input type="submit" class="btn btn-warning" value="Update My Profile" name="update"/>
                         <input type="reset" class="btn btn-info" value="Reset"/>
 
+                        <div style="color: black">
+                        <h4 style="color: black">Attendance</h4>
+                        <table style="border: #000 solid thin; width: 100%">
+                            <?php
+                                $select_query = "select course_id, count(stud_id) as count from attendance where stud_id = $_SESSION[id] and status='Present' group by course_id";
+                                $select_query_result = mysqli_query($conn, $select_query) or die(mysqli_error($conn));
+                            ?>
+                            <tr>
+                            <th>Course id</th>
+                            <th>Course name</th>
+                            <th>Classes attended</th>
+                            </tr>
+                            <?php while ($row = mysqli_fetch_array($select_query_result)){
+                                $select_query1 = "select course_name from faculty where course_code = '$row[course_id]'";
+                                $select_query1_result = mysqli_query($conn, $select_query1) or die(mysqli_error($conn));
+                                $row1 = mysqli_fetch_array($select_query1_result);
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $row[course_id];?>
+                                    </td>
+
+                                    <td>
+                                        <?php echo $row1[course_name];?>
+                                    </td>
+
+                                    <td>
+                                        <?php echo $row[count];?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+                        </div>
                 </div>
             </div>
           </div>
 
         </form>
-
-
 
         </div>
     </div>

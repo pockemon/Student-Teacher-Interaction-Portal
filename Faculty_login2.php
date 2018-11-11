@@ -13,7 +13,9 @@ session_start();
  	else
  	{
 
- $sql=mysqli_query($conn,"select * from faculty where email='$e' and password='$p'");
+     $pass = md5($p);
+
+ $sql=mysqli_query($conn,"select * from faculty where email='$e' and password='$pass'");
 
  $r=mysqli_num_rows($sql);
 

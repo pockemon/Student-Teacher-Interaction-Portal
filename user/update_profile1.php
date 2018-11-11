@@ -125,7 +125,7 @@ $res=mysqli_fetch_assoc($sql);
                         </a>
                     </li>
                     <li>
-                        <a href="update_profile1.php">
+                        <a href="update_profile2.php">
                             <i class="pe-7s-user"></i>
                             <p>View/Edit Profile</p>
                         </a>

@@ -111,7 +111,7 @@ $users=mysqli_fetch_assoc($sql);
                         </a>
                     </li>
                     <li>
-                        <a href="user/update_profile1.php">
+                        <a href="user/update_profile2.php">
                             <i class="pe-7s-user"></i>
                             <p>User Profile</p>
                         </a>
@@ -126,7 +126,7 @@ $users=mysqli_fetch_assoc($sql);
                     </li>
 
                     <li>
-                          <a href="../stu_co_reg.php">
+                          <a href="stu_co_reg.php">
                              <i class="pe-7s-news-paper"></i>
                              <p> Course Registration </p>
                           </a>

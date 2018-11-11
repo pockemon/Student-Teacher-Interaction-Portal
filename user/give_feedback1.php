@@ -114,7 +114,7 @@ echo "<font color='blue' size='5px'><center>Thank you for your feedback</center>
                         </a>
                     </li>
                     <li>
-                        <a href="update_profile1.php">
+                        <a href="update_profile2.php">
                             <i class="pe-7s-user"></i>
                             <p>User Profile</p>
                         </a>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2018 at 03:22 PM
+-- Generation Time: Nov 11, 2018 at 06:18 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -70,6 +70,26 @@ INSERT INTO `answers_table` (`answer_id`, `Q_id`, `answer`, `answered_by`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `stud_id` int(11) NOT NULL,
+  `course_id` varchar(11) NOT NULL,
+  `date` date NOT NULL,
+  `status` enum('Present','Absent') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`stud_id`, `course_id`, `date`, `status`) VALUES
+(4, 'CO313', '2018-11-11', 'Present');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `courses`
 --
 
@@ -99,6 +119,7 @@ INSERT INTO `courses` (`course_id`, `course_name`, `teacher_id`, `teacher_name`)
 
 CREATE TABLE `course_registration` (
   `student_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `course_id` varchar(7) NOT NULL,
   `course_name` varchar(30) NOT NULL,
   `teacher_id` int(11) NOT NULL,
@@ -110,19 +131,12 @@ CREATE TABLE `course_registration` (
 -- Dumping data for table `course_registration`
 --
 
-INSERT INTO `course_registration` (`student_id`, `course_id`, `course_name`, `teacher_id`, `teacher_name`, `status`) VALUES
-(4, 'CO313', 'Number Therory', 5, 'Mr.Brc', 'Accepted'),
-(4, 'CO316', 'Computer Architecture Lab', 7, 'Mr.Basvaraj Talwar', 'Accepted'),
-(4, 'CO316', 'Internet technology and applic', 8, 'Mrs.Saumya Hegde', 'Accepted'),
-(5, 'CO313', 'Number Therory', 5, 'Mr.Brc', 'Rejected'),
-(4, 'CO300', 'Computer Networks', 9, 'Mr.Mohit tahiliani', 'Pending'),
-(4, 'CO301', 'DBMS', 10, 'M. Venkatesan', 'Pending'),
-(5, 'CO316', 'Computer Architecture Lab', 7, 'Mr.Basvaraj Talwar', 'Rejected'),
-(5, 'CO316', 'Internet technology and applic', 8, 'Mrs.Saumya Hegde', 'Rejected'),
-(4, 'CO368', 'Internet technology and applic', 8, 'Mrs.Saumya Hegde', 'Accepted'),
-(5, 'CO368', 'Internet technology and applic', 8, 'Mrs.Saumya Hegde', 'Accepted'),
-(5, 'CO300', 'Computer Networks', 9, 'Mr.Mohit tahiliani', 'Pending'),
-(5, 'CO301', 'DBMS', 10, 'M. Venkatesan', 'Pending');
+INSERT INTO `course_registration` (`student_id`, `name`, `course_id`, `course_name`, `teacher_id`, `teacher_name`, `status`) VALUES
+(4, ' Hardik', 'CO313', 'Number Therory', 5, 'Mr.Brc', 'Accepted'),
+(4, ' Hardik', 'CO316', 'Computer Architecture Lab', 7, 'Mr.Basvaraj Talwar', 'Pending'),
+(4, ' Hardik', 'CO368', 'Internet technology and applic', 8, 'Mrs.Saumya Hegde', 'Pending'),
+(4, ' Hardik', 'CO300', 'Computer Networks', 9, 'Mr.Mohit tahiliani', 'Pending'),
+(4, ' Hardik', 'CO301', 'DBMS', 10, 'M. Venkatesan', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -191,7 +205,8 @@ CREATE TABLE `feedback` (
 INSERT INTO `feedback` (`id`, `student_id`, `faculty_id`, `Teacher provided the course outline having weekly content plan w`, `Course objectives,learning outcomes and grading criteria are cle`, `Course integrates throretical course concepts with the real worl`, `Teacher is punctual,arrives on time and leaves on time`, `Teacher is good at stimulating the interest in the course conten`, `Teacher is good at explaining the subject matter`, `Teacher's presentation was clear,loud ad easy to understand`, `Teacher is good at using innovative teaching methods/ways`, `Teacher is available and helpful during counseling hours`, `Teacher has competed the whole course as per course outline`, `Teacher was always fair and impartial:`, `Assessments conducted are clearly connected to maximize learinin`, `What I liked about the course`, `Why I disliked about the course`, `date`) VALUES
 (1, 'h@gmail.com', 'bt@gmail.com', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '                                            Good', '0', '2018-10-18'),
 (2, 'hardikrana276@gmail.com', 'bt@gmail.com', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '                                            Everything', '0', '2018-10-23'),
-(3, 'hardikrana276@gmail.com', 'brc@gmail.com', '5', '5', '5', '5', '5', '5', '5', '5', '4', '4', '4', '4', '                                            Good', '                                            None', '2018-10-23');
+(3, 'hardikrana276@gmail.com', 'brc@gmail.com', '5', '5', '5', '5', '5', '5', '5', '5', '4', '4', '4', '4', '                                            Good', '                                            None', '2018-10-23'),
+(4, 'sh@gmail.com', 'brc@gmail.com', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '                                            None', '                                            None', '2018-11-05');
 
 -- --------------------------------------------------------
 
@@ -291,7 +306,8 @@ INSERT INTO `user` (`id`, `name`, `email`, `pass`, `mobile`, `programme`, `semes
 (5, ' Himanshu', 'h@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1112223334, 'B.Tech', 'v', 'Male', '26166986_1052998068173129_5661887996364653062_n.jpg', '1111-11-11', 2147483647),
 (6, ' Bobby Patil', 'bobbypt05@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1122334455, 'B.Tech', 'v', 'Male', 'bobby.jpeg', '1111-11-11', 2147483647),
 (7, ' Chetan', 'cr@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 3332224445, 'B.Tech', 'v', 'Male', 'chetan.jpg', '1111-11-11', 2147483647),
-(8, ' Mishal', 'm@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1112223334, 'B.Tech', 'iii', 'Male', 'images.jpeg', '2018-11-14', 2147483647);
+(8, ' Mishal', 'm@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1112223334, 'B.Tech', 'iii', 'Male', 'images.jpeg', '2018-11-14', 2147483647),
+(9, ' Shushant', 'sh@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 9900232323, 'B.Tech', 'v', 'Male', 'shushant.jpg', '1998-11-11', NULL);
 
 --
 -- Indexes for dumped tables
@@ -372,7 +388,7 @@ ALTER TABLE `faculty`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `question_table`
@@ -396,7 +412,7 @@ ALTER TABLE `uploads_stu`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

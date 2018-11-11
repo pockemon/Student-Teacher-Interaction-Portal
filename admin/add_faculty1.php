@@ -35,6 +35,8 @@ if(!isset($_SESSION['admin']))
 			}
 			else
 			{
+				$pas = md($pass);
+				
 				mysqli_query($conn,"insert into faculty values('','$user_name','$name','$Designation','$prg','$sem','$email','$pass','$mob',now(),'0','$course','$code')");
 
 				$err="<font color='blue' size='5px'><center>New Faculty Successfully Added.</center></font>";

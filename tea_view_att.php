@@ -1,16 +1,21 @@
 
-
 <?php
 session_start();
-include('../dbconfig.php');
+include('dbconfig.php');
 error_reporting(1);
 
 $user= $_SESSION['faculty_login'];
 if($user=="")
-{header('location:../home2.php');}
+{header('location:home2.php');}
 
 $sql=mysqli_query($conn,"select * from faculty where email='$user' ");
 $users=mysqli_fetch_assoc($sql);
+
+$cc = $users['course_code'];
+
+$select_query = "select stud_id,count(stud_id) as count from attendance where course_id = '$cc' and status = 'Present' group by stud_id";
+$select_query_result = mysqli_query($conn, $select_query) or die(mysqli_error($conn));
+
 ?>
 
 
@@ -73,26 +78,26 @@ $users=mysqli_fetch_assoc($sql);
                      </a>
                      <br>
 
-                     <img src="images_f/f1.jpeg" style="width:200px;height:180px;border-radius:50%">
+                     <img src="images/f1.jpeg" style="width:200px;height:180px;border-radius:50%">
 
                 </div>
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="index.php">
+                        <a href="faculty/index.php">
                             <i class="pe-7s-graph"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
-                        <a href="Update_profile1.php">
+                        <a href="faculty/Update_profile1.php">
                             <i class="pe-7s-user"></i>
                             <p>View/Edit Profile</p>
                         </a>
                     </li>
 
                     <li>
-                          <a href="../tea_co_reg.php">
+                          <a href="tea_co_reg.php">
                              <i class="pe-7s-news-paper"></i>
                              <p> Approve Courses </p>
                           </a>
@@ -100,7 +105,7 @@ $users=mysqli_fetch_assoc($sql);
                     </li>
 
                     <li>
-                          <a href="../tea_atte.php">
+                          <a href="tea_atte.php">
                              <i class="pe-7s-id"></i>
                              <p> Give Attendance </p>
                           </a>
@@ -108,15 +113,17 @@ $users=mysqli_fetch_assoc($sql);
                     </li>
 
                     <li>
-                          <a href="../tea_view_att.php">
+                          <a href="tea_view_att.php">
                              <i class="pe-7s-look"></i>
                              <p> View Attendance </p>
                           </a>
 
                     </li>
 
+
+
                     <li>
-                          <a href="Forum1.php">
+                          <a href="faculty/Forum1.php">
                               <i class="pe-7s-notebook"></i>
                               <p>Q-A forum </p>
                           </a>
@@ -124,7 +131,7 @@ $users=mysqli_fetch_assoc($sql);
                     </li>
 
                     <li>
-                          <a href="Upload.php">
+                          <a href="faculty/Upload.php">
                               <i class="pe-7s-upload"></i>
                               <p>Upload Study Material/Assignment </p>
                           </a>
@@ -133,7 +140,7 @@ $users=mysqli_fetch_assoc($sql);
 
                     <li>
 
-                      <a href="view1.php">
+                      <a href="faculty/view1.php">
                           <i class="pe-7s-look"></i>
                           <p> View Assignment submissions</p>
                       </a>
@@ -143,7 +150,7 @@ $users=mysqli_fetch_assoc($sql);
 
 
                     <li>
-                              <a href="Feedback1.php">
+                              <a href="faculty/Feedback1.php">
                                  <i class="pe-7s-like2"></i>
                                  <p>View Feedback</p>
                                </a>
@@ -182,7 +189,7 @@ $users=mysqli_fetch_assoc($sql);
                         <ul class="nav navbar-nav navbar-right">
 
                             <li>
-                                <a href="logout.php">
+                                <a href="faculty/logout.php">
                                     <p>Log out</p>
                                 </a>
                             </li>
@@ -193,40 +200,69 @@ $users=mysqli_fetch_assoc($sql);
             </nav>
 
 
-            <div class="content" style="">
+            <div class="content" style="color: black; margin-bottom: 30px">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row panel panel-default">
+                        <div class="col-md-6">
 
-                        <div class="col-md-3">
+                              <div style="margin-top: 30px;margin-bottom: 20px">
+                                <h4>Choose the course to see the attendance:</h4>
+                                <form method="post" action="">
+                                    <table style="border-spacing: 100px;">
+                                    <tr>
+                                        <td>
+                                            <div class="form-inline">
+                                                <select class="form-control" name="course1" style="width: 100px">
+                                                    <option value="" selected disabled>Course</option>
+                                                    <?php foreach ($_SESSION['course'] as $course){?>
+                                                    <option value=<?php echo $course?>><?php echo $course;?></option>
+                                                    <?php } ?>
+                                            </div>
+                                        </td>
+                                        <td><input type="submit" class="btn btn-primary" style="margin-left: 50px" name="att1"></td>
+                                    </tr>
+                                </table>
 
-                        </div>
+                                    <table style="border-spacing: 100px;border: #000 solid thin; margin-top: 20px; padding: 10%">
+                                        <tr>
+                                            <th style="padding-right: 50px">Student Id</th>
+                                            <th style="padding-right: 50px">Name</th>
+                                            <th style="padding-right: 50px">Days present</th>
+                                        </tr>
+                                        <?php
+                                        while ($row = mysqli_fetch_array($select_query_result))
+                                        {
+                                            $select_query1 = "select name from user where id = $row[stud_id]";
+                                            $select_query1_result = mysqli_query($conn, $select_query1) or die(mysqli_error($conn));
+                                            $row1 = mysqli_fetch_array($select_query1_result);
+                                        ?>
 
-                        <div class="col-md-5">
-                            <div class="card">
+                                        <tr style="margin-top:30px;padding-top: 30px">
+                                            <td style="padding-right: 50px">
+                                                <?php echo $row[stud_id];?>
+                                            </td>
 
-                                   <h1>Hello <?php echo $users['Name'];?> </h3>
+                                            <td style="padding-right: 50px">
+                                                <?php echo $row1[name];?>
+                                            </td>
 
-                                    <hr>
-                                    <h3>Welcome to your dashboard </h3>
+                                            <td style="padding-right: 50px">
+                                                <?php echo $row[count];?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                </form>
+                              </div>
 
-                            </div>
-                        </div>
 
-                        <div class="col-md-4">
-
-                        </div>
-
-
-                    </div>
+                      </div>
                 </div>
-
-
-
-
-
             </div>
-        </div>
-    </div>
+       </div>
+  </div>
+</div>
 
 </body>
 
@@ -248,7 +284,6 @@ $users=mysqli_fetch_assoc($sql);
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
-
 
 
 </html>

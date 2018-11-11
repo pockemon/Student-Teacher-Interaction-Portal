@@ -16,14 +16,15 @@ if(isset($_SESSION['faculty_login']))
  	else
  	{
 
- $sql=mysqli_query($conn,"select * from faculty where email='$e' and password='$p'") or die(mysqli_error($conn));
+ $pass = md5($p);
+ $sql=mysqli_query($conn,"select * from faculty where email='$e' and password='$pass'") or die(mysqli_error($conn));
 
  $r=mysqli_num_rows($sql);
 
 
  if($r==true)
  {
-    $_SESSION['faculty_login']=$e;     
+    $_SESSION['faculty_login']=$e;
   while ($row = mysqli_fetch_array($sql))
   {
       //echo $row['course_code'];
@@ -34,7 +35,7 @@ if(isset($_SESSION['faculty_login']))
   //foreach ($_SESSION['course'] as $c)
   //{
   //echo $c;
-  //}  
+  //}
 
  header('location:faculty/index.php');
  }

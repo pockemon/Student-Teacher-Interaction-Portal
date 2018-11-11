@@ -136,7 +136,7 @@ $err="<font color='blue' size='5px'><center>Wrong Old Password </center></font>"
 													</a>
 											</li>
 											<li>
-													<a href="update_profile1.php">
+													<a href="update_profile2.php">
 															<i class="pe-7s-user"></i>
 															<p>View/Edit Profile</p>
 													</a>

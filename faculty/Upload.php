@@ -44,7 +44,7 @@ if(isset($_POST["submit"]))
     $file = $_FILES['file']['name'];
     //echo $_FILES['fileToUpload']['name'];
     $file1 = $_FILES['file'];
-    print_r($file1);
+    //print_r($file1);
 
 
     $target_file = $target_dir . basename($_FILES['file']['name']);
@@ -172,6 +172,22 @@ if(isset($_POST["submit"]))
                           <a href="../tea_co_reg.php">
                              <i class="pe-7s-news-paper"></i>
                              <p> Approve Courses </p>
+                          </a>
+
+                    </li>
+
+                    <li>
+                          <a href="../tea_atte.php">
+                             <i class="pe-7s-id"></i>
+                             <p> Give Attendance </p>
+                          </a>
+
+                    </li>
+
+                    <li>
+                          <a href="../tea_view_att.php">
+                             <i class="pe-7s-look"></i>
+                             <p> View Attendance </p>
                           </a>
 
                     </li>

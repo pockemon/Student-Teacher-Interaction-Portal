@@ -164,7 +164,7 @@ if(isset($_POST["submit"]))
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="update_profile1.php">
+	                        <a href="update_profile2.php">
 	                            <i class="pe-7s-user"></i>
 	                            <p>User Profile</p>
 	                        </a>

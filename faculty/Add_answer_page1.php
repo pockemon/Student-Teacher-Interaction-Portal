@@ -100,6 +100,30 @@ $users=mysqli_fetch_assoc($sql);
 	                        </a>
 	                    </li>
 
+											<li>
+	                          <a href="../tea_co_reg.php">
+	                             <i class="pe-7s-news-paper"></i>
+	                             <p> Approve Courses </p>
+	                          </a>
+
+	                    </li>
+
+	                    <li>
+	                          <a href="../tea_atte.php">
+	                             <i class="pe-7s-id"></i>
+	                             <p> Give Attendance </p>
+	                          </a>
+
+	                    </li>
+
+	                    <li>
+	                          <a href="../tea_view_att.php">
+	                             <i class="pe-7s-look"></i>
+	                             <p> View Attendance </p>
+	                          </a>
+
+	                    </li>
+
 
 											<li>
 														<a href="Forum1.php">
