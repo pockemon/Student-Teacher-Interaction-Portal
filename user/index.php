@@ -2,6 +2,10 @@
 <?php
 session_start();
 include('../dbconfig.php');
+if(!isset($_SESSION['user']))
+{
+    header('location:../home2.php');
+}
 $user= $_SESSION['user'];
 if($user=="")
 {header('location:../home2.php');}
