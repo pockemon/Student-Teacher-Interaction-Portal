@@ -3,7 +3,7 @@ A project build as a part of course CO368 - Internet technologies and Applicatio
 
 #### [View website here](https://workpurpose.000webhostapp.com)
 
-### Functionality Added
+### Functionalities Added
 - [x] Course Registration
 - [x] Assignment upload/submission
 - [x] Q-A Forum
