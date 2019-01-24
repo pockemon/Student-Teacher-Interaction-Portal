@@ -1,5 +1,5 @@
 # Student-Teacher-Interaction-Portal
-A project build as a part of course CO368 - Internet technologies and Application [CSE NITK SEM-5]
+A web-portal to make interaction between student-teacher feasible.
 
 <!-- [View website here](https://workpurpose.000webhostapp.com) -->
 
