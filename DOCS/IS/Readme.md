@@ -1,2 +1,0 @@
-### Information Security 
-* Proposal Report
